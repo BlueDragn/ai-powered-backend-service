@@ -2,3 +2,4 @@ txt
 fastapi
 uvicorn
 pydantic
+pip freeze > requirements.txt
