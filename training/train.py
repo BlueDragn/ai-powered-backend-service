@@ -3,6 +3,7 @@ Flow A - Training Pipeline
 Dataset: California Housing
 """
 from sklearn.datasets import fetch_california_housing
+from sklearn.model_selection import train_test_split
 import pandas as pd
 
 def main():
@@ -27,6 +28,23 @@ def main():
 
     print("\nBasics Statistics:")
     print(df.describe())
+
+
+    #separate features and target
+    X = df.drop("target", axis=1)
+    Y = df["target"]
+
+    print("\nFeature shape (X):", X.shape)
+    print("Target shape (Y):", Y.shape)
+
+    X_train, X_test, Y_train, Y_test = train_test_split(
+        X,Y, test_size=0.2, random_state=42
+    )
+
+    print("\nTraining set shape:", X_train.shape)
+    print("\nTest set shape:", X_test.shape)
+
+
 
 if __name__ == "__main__":
     main()
