@@ -10,6 +10,9 @@ from sklearn.metrics import r2_score, mean_squared_error
 
 import pandas as pd
 
+import joblib
+import os
+
 def main():
     print("Loading California Housing dataset... ")
     data = fetch_california_housing()
@@ -69,6 +72,15 @@ def main():
     print("\nModel Performance:")
     print("R2 Score:", r2)
     print("MSE:", mse)
+
+    #Ensure model directory exists
+    os.makedirs("model", exist_ok=True)
+
+    #save Model and scaler
+    joblib.dump(model, "model/linear_regression_model.pkl")
+    joblib.dump(scaler, "model/scaler.pkl")
+
+    print("\nModel and scaler saved successfully")
 
 
 
