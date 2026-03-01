@@ -19,5 +19,14 @@ def main():
     print("\nFirst 5 rows:")
     print(df.head())
 
+    print("\nMissing Values:")
+    print(df.isnull().sum())
+
+    print("n\Data Types")
+    print(df.dtypes)
+
+    print("\nBasics Statistics:")
+    print(df.describe())
+
 if __name__ == "__main__":
     main()
