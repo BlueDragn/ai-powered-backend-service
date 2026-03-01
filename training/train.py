@@ -5,6 +5,9 @@ Dataset: California Housing
 from sklearn.datasets import fetch_california_housing
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import r2_score, mean_squared_error
+
 import pandas as pd
 
 def main():
@@ -51,6 +54,22 @@ def main():
     X_test_scaled = scaler.transform(X_test)
     print("Scaled training shape:", X_train_scaled.shape)
     print("Scaled test shape:", X_test_scaled.shape)
+
+    #Train model
+    model = LinearRegression()
+    model.fit(X_train_scaled, Y_train)
+
+    #Prediction
+    Y_pred = model.predict(X_test_scaled)
+
+    #Evaluation
+    r2 = r2_score(Y_test, Y_pred)
+    mse = mean_squared_error(Y_test, Y_pred)
+
+    print("\nModel Performance:")
+    print("R2 Score:", r2)
+    print("MSE:", mse)
+
 
 
 if __name__ == "__main__":
